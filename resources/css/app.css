@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.logo{
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+/* for color visualization */
+.test{
+    background-color:#7FA16D; /* primary*/
+    background-color: #C8D6CD; /* secondary*/
+    background-color: #3E5D49; /* accent*/
+    background-color: #FAF1E6; /* background */
+}
