@@ -5,7 +5,7 @@ import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, useForm } from '@inertiajs/react';
 
-export default function ForgotPassword({ email }) {
+export default function ForgotPassword() {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',

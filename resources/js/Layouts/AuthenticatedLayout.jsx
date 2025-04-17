@@ -1,4 +1,5 @@
 import ApplicationLogoCropped from '@/Components/ApplicationLogoCropped';
+import ApplicationLogoWords from '@/Components/ApplicationLogoWords';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
@@ -14,35 +15,73 @@ export default function AuthenticatedLayout({ header, children }) {
         useState(false);
 
     return (
+        // full layout container
         <div className="min-h-screen bg-background font-bold">
-            <nav className="border-b border-gray-100 bg-white">
+            {/* container for the navbar */}
+            {/* border-b = border-bottom */}
+            <nav className="h-[75px] border-b-2 border-accent bg-primary">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="flex py-2 justify-between">
+                    <div className="flex justify-between py-4">
                         <div className="flex">
-                            <div className="flex shrink-0 items-center">
+                            {/* Show only on small screens and up */}
+                            <div className="hidden shrink-0 items-center sm:flex">
                                 <Link href="/">
                                     <ApplicationLogoCropped className="h-[50px]" />
                                 </Link>
                             </div>
 
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            {/* Show only on mobile (below sm) */}
+                            <div className="flex justify-center shrink-0 items-center sm:hidden bg-white rounded-lg">
+                                <Link href="/" className='flex'>
+                                <ApplicationLogoCropped className="h-[25px]" />
+
+                                    <ApplicationLogoWords className="h-[25px] ml-2" />
+                                </Link>
+                            </div>
+
+                            <div className="hidden space-x-2 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
                                     href={route('dashboard')}
                                     active={route().current('dashboard')}
                                 >
                                     Dashboard
                                 </NavLink>
+                                <NavLink
+                                    href={route('dashboard')}
+                                    active={route().current('movies')}
+                                >
+                                    Movies
+                                </NavLink>
+                                <NavLink
+                                    href={route('dashboard')}
+                                    active={route().current('shows')}
+                                >
+                                    Shows
+                                </NavLink>
+                                <NavLink
+                                    href={route('dashboard')}
+                                    active={route().current('food')}
+                                >
+                                    Food
+                                </NavLink>
+                                <NavLink
+                                    href={route('dashboard')}
+                                    active={route().current('other')}
+                                >
+                                    Other
+                                </NavLink>
                             </div>
                         </div>
 
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
                             <div className="relative ms-3">
+                                {/* dropdown menu with the user's name on it */}
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                                                className="inline-flex items-center rounded-md border border-transparent bg-secondary px-3 py-2 text-sm font-medium leading-4 text-white transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
                                             >
                                                 {user.name}
 
@@ -81,6 +120,7 @@ export default function AuthenticatedLayout({ header, children }) {
                         </div>
 
                         <div className="-me-2 flex items-center sm:hidden">
+                            {/* shows or hides the navigation hamburger */}
                             <button
                                 onClick={() =>
                                     setShowingNavigationDropdown(
@@ -123,10 +163,11 @@ export default function AuthenticatedLayout({ header, children }) {
                     </div>
                 </div>
 
+                {/* essentially the mobile dropdown menu */}
                 <div
                     className={
                         (showingNavigationDropdown ? 'block' : 'hidden') +
-                        ' sm:hidden'
+                        ' sm:hidden bg-white'
                     }
                 >
                     <div className="space-y-1 pb-3 pt-2">
@@ -135,6 +176,30 @@ export default function AuthenticatedLayout({ header, children }) {
                             active={route().current('dashboard')}
                         >
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('dashboard')}
+                            active={route().current('movies')}
+                        >
+                            Movies
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('dashboard')}
+                            active={route().current('shows')}
+                        >
+                            Shows
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('dashboard')}
+                            active={route().current('food')}
+                        >
+                            Food
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('dashboard')}
+                            active={route().current('other')}
+                        >
+                            Other
                         </ResponsiveNavLink>
                     </div>
 
