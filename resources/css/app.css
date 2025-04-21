@@ -9,8 +9,10 @@
 
 /* for color visualization */
 .test{
-    background-color:#7FA16D; /* primary*/
-    background-color: #C8D6CD; /* secondary*/
-    background-color: #3E5D49; /* accent*/
-    background-color: #FAF1E6; /* background */
+    background-color: #FF9BD2; /* primary*/
+    background-color: #D63484; /* secondary*/
+    background-color: #F8F4EC; /* accent*/
+    background-color: #402B3A; /* background */
+    background-color: #FF8A8A; /* error 1 */
+    background-color: #FF4E4E; /* error 2 */
 }

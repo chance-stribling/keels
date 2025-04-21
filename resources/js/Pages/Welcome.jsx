@@ -1,12 +1,11 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Checkbox from '@/Components/Checkbox';
+import Icon from '@/Components/Icon';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
-
-// import logo from '../../../public/assets/images/logos/tab-color-trans.png';
 
 export default function Welcome({ auth }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -27,16 +26,20 @@ export default function Welcome({ auth }) {
         <>
             <Head title="Welcome" />
 
-            <div className="flex min-h-screen w-full flex-col justify-between bg-gradient-to-br from-[#FFFFFF] to-[#C8D6CD] font-bold">
+            <div className="flex min-h-screen w-full flex-col justify-between bg-background font-bold">
                 <header className="">
                     <nav className="flex justify-end">
                         {auth.user ? null : (
                             <>
                                 <Link
                                     href={route('register')}
-                                    className="rounded-md px-3 py-2 text-secondary ring-1 ring-transparent transition hover:text-accent max-sm:text-accent"
+                                    className="flex items-center rounded-md px-3 py-2 text-accent ring-1 ring-transparent transition hover:text-primary max-sm:text-primary"
                                 >
-                                    Register
+                                    <Icon
+                                        name="file-pen"
+                                        className="mr-2 mt-1 text-primary"
+                                    />
+                                    <p className="">Register</p>
                                 </Link>
                             </>
                         )}
@@ -45,14 +48,14 @@ export default function Welcome({ auth }) {
 
                 <main className="flex w-full flex-col items-center">
                     <div className="flex w-full flex-col items-center justify-center">
-                        <ApplicationLogo className="w-[300px]" />
+                        <ApplicationLogo className="mb-5 w-[350px]" />
                         {!auth.user ? (
-                            <div className="rounded-lg bg-primary px-6 py-4">
+                            <div className="w-[350px] rounded-lg bg-secondary px-6 py-4">
                                 <div className="mb-2 w-full text-accent">
                                     <p className="underline">Login</p>
                                 </div>
 
-                                <form onSubmit={submit} className="w-[280px]">
+                                <form onSubmit={submit} className="">
                                     <div>
                                         <InputLabel
                                             htmlFor="email"
@@ -64,7 +67,7 @@ export default function Welcome({ auth }) {
                                             type="email"
                                             name="email"
                                             value={data.email}
-                                            className="mt-1"
+                                            className="mt-1 w-full"
                                             autoComplete="username"
                                             isFocused={true}
                                             onChange={(e) =>
@@ -89,7 +92,7 @@ export default function Welcome({ auth }) {
                                             type="password"
                                             name="password"
                                             value={data.password}
-                                            className="mt-1"
+                                            className="mt-1 w-full"
                                             autoComplete="current-password"
                                             onChange={(e) =>
                                                 setData(
@@ -117,7 +120,7 @@ export default function Welcome({ auth }) {
                                                     )
                                                 }
                                             />
-                                            <span className="ms-2 text-sm text-secondary">
+                                            <span className="ms-2 text-sm text-primary">
                                                 Remember me
                                             </span>
                                         </label>
@@ -126,7 +129,7 @@ export default function Welcome({ auth }) {
                                     <div className="mt-5 flex items-center justify-between">
                                         <Link
                                             href={route('password.request')}
-                                            className="rounded-md text-sm text-secondary underline hover:text-accent"
+                                            className="rounded-md text-sm text-primary underline hover:text-accent"
                                         >
                                             Forgot your password?
                                         </Link>

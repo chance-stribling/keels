@@ -1,3 +1,4 @@
+import Icon from '@/Components/Icon';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 
@@ -5,10 +6,14 @@ export default function Dashboard() {
     return (
         <AuthenticatedLayout
             header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Dashboard
-                </h2>
+                <>
+                    <Icon name="table-columns" className="mr-2" />
+
+                    <p className="text-lg font-semibold">Dashboard</p>
+                </>
             }
+            color="accent"
+            textColor="primary"
         >
             <Head title="Dashboard" />
 

@@ -1,9 +1,11 @@
+import HintModal from '@/Components/HintModal'; // Adjust path if needed
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, useForm } from '@inertiajs/react';
+import { useEffect, useState } from 'react';
 
 export default function ForgotPassword() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -22,6 +24,12 @@ export default function ForgotPassword() {
                 reset('password', 'password_confirmation', 'passphrase'),
         });
     };
+    const [showHintModal, setShowHintModal] = useState(false);
+    useEffect(() => {
+        if (errors.passphrase) {
+            setShowHintModal(true);
+        }
+    }, [errors.passphrase]);
 
     return (
         <GuestLayout>
@@ -47,7 +55,7 @@ export default function ForgotPassword() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel htmlFor="password" value="New Password" />
 
                     <TextInput
                         id="password"
@@ -106,6 +114,9 @@ export default function ForgotPassword() {
                     </PrimaryButton>
                 </div>
             </form>
+            {showHintModal && (
+                <HintModal onClose={() => setShowHintModal(false)} />
+            )}
         </GuestLayout>
     );
 }
