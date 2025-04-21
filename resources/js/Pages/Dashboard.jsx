@@ -17,13 +17,28 @@ export default function Dashboard() {
         >
             <Head title="Dashboard" />
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
-                            You're logged in!
-                        </div>
-                    </div>
+            <div className="mx-4 mt-2 flex flex-col items-center justify-center">
+                <div className="flex w-full justify-center rounded-2xl border-2 border-primary bg-secondary p-10 text-center text-2xl font-semibold text-background shadow-lg">
+                <Icon
+                        name="heart"
+                        className="mr-2 text-4xl text-primary"
+                    />
+                    Welcome to Keelyscope!
+                    <Icon
+                    name="heart"
+                    className="ml-2 text-4xl text-primary"
+                />
+                </div>
+                <div className="mt-2 flex w-full justify-center rounded-2xl border-2 border-primary bg-secondary p-10 text-center text-2xl font-semibold text-background shadow-lg">
+                <Icon
+                        name="film"
+                        className="mr-2 text-4xl text-primary"
+                    />
+                    Movies
+                    <Icon
+                    name="film"
+                    className="ml-2 text-4xl text-primary"
+                />
                 </div>
             </div>
         </AuthenticatedLayout>

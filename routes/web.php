@@ -15,6 +15,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/queue', [TMDBController::class, 'addToQueue']);
     Route::get('/queue', [TMDBController::class, 'getQueuedMovies']);
     Route::delete('/queue/{tmdb_id}', [TMDBController::class, 'destroy']);
+    Route::post('/queue/{id}/watched', [TMDBController::class, 'markAsWatched']);
+    Route::patch('/queue/{id}/watched', [TMDBController::class, 'markAsWatched']);
 });
 Route::get('/', function () {
     return Inertia::render('Welcome', [

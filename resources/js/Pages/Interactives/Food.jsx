@@ -18,12 +18,14 @@ export default function Food({ auth }) {
         >
             <Head title="Food" />
 
-            <div className="mx-auto max-w-7xl py-10">
-                <h1 className="text-3xl font-bold text-primary">Food</h1>
-                <p className="mt-4 text-accent">
-                    Just a place to drop some sweet nothings. 💌
-                </p>
-            </div>
+            
+            <div className="flex min-h-[80vh] w-full items-center justify-center px-4 py-2">
+    <div className="flex justify-center rounded-2xl border-2 border-primary bg-secondary p-10 text-center text-2xl font-semibold text-background shadow-lg">
+        <Icon name="heart" className="mr-2 text-4xl text-primary" />
+        Coming Soon!
+        <Icon name="heart" className="ml-2 text-4xl text-primary" />
+    </div>
+</div>
         </AuthenticatedLayout>
     );
 }

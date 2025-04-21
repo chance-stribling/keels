@@ -1,6 +1,6 @@
 // START_TOGGLE
-//import logo from '../../../public/assets/images/logos/logo-no-background.png';
-import logo from '../../../public/assets/images/logos/tab-color-trans.png';
+import logo from '../../../public/assets/images/logos/logo-no-background.png';
+//import logo from '../../../public/assets/images/logos/tab-color-trans.png';
 // END_TOGGLE
 
 export default function ApplicationLogo({ className = '' }) {

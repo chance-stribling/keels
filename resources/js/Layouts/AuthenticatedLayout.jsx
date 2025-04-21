@@ -70,16 +70,16 @@ export default function AuthenticatedLayout({
                                         Dashboard
                                     </NavLink>
                                     <NavLink
-                                        href={route('shows')}
-                                        active={route().current('shows')}
-                                    >
-                                        Shows
-                                    </NavLink>
-                                    <NavLink
                                         href={route('movies')}
                                         active={route().current('movies')}
                                     >
                                         Movies
+                                    </NavLink>
+                                    <NavLink
+                                        href={route('shows')}
+                                        active={route().current('shows')}
+                                    >
+                                        Shows
                                     </NavLink>
                                     <NavLink
                                         href={route('food')}
@@ -222,16 +222,6 @@ export default function AuthenticatedLayout({
                                         <div>Dashboard</div>
                                     </ResponsiveNavLink>
                                     <ResponsiveNavLink
-                                        href={route('shows')}
-                                        active={route().current('shows')}
-                                    >
-                                        <Icon
-                                            name="tv"
-                                            className="mr-2 text-primary"
-                                        />
-                                        <div>Shows</div>
-                                    </ResponsiveNavLink>
-                                    <ResponsiveNavLink
                                         href={route('movies')}
                                         active={route().current('movies')}
                                     >
@@ -240,6 +230,16 @@ export default function AuthenticatedLayout({
                                             className="mr-2 text-primary"
                                         />
                                         <div>Movies</div>
+                                    </ResponsiveNavLink>
+                                    <ResponsiveNavLink
+                                        href={route('shows')}
+                                        active={route().current('shows')}
+                                    >
+                                        <Icon
+                                            name="tv"
+                                            className="mr-2 text-primary"
+                                        />
+                                        <div>Shows</div>
                                     </ResponsiveNavLink>
                                     <ResponsiveNavLink
                                         href={route('food')}

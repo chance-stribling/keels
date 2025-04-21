@@ -2,11 +2,10 @@ import FilterModal from '@/Components/FilterModal';
 import Icon from '@/Components/Icon';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import LazyLoad from 'react-lazyload';
-import { useMemo } from 'react';
 import { usePage } from '@inertiajs/react';
+import axios from 'axios';
+import { useEffect, useMemo, useState } from 'react';
+import LazyLoad from 'react-lazyload';
 export default function AllTitles() {
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -28,32 +27,30 @@ export default function AllTitles() {
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
     const [queuedMovies, setQueuedMovies] = useState([]);
     const { auth } = usePage().props;
-const userId = auth.user?.id;
+    const userId = auth.user?.id;
     useEffect(() => {
         const fetchQueuedMovies = async () => {
             try {
                 const res = await axios.get('/queue');
                 setQueuedMovies(res.data);
-                console.log("Fetched queued movies:", res.data);
+                console.log('Fetched queued movies:', res.data);
             } catch (err) {
-                console.error("Error fetching queued movies:", err);
+                console.error('Error fetching queued movies:', err);
             }
         };
-    
+
         fetchQueuedMovies();
     }, []);
-    
+
     const queuedMovieIds = useMemo(() => {
-        return queuedMovies.map(movie => String(movie.tmdb_id));
+        return queuedMovies.map((movie) => String(movie.tmdb_id));
     }, [queuedMovies]);
-    
+
     const isQueued = useMemo(() => {
         if (!selectedMovie) return false;
         return queuedMovieIds.includes(String(selectedMovie.id));
     }, [selectedMovie, queuedMovieIds]);
-    
-    
-      
+
     useEffect(() => {
         const delayDebounce = setTimeout(() => {
             setDebouncedSearchTerm(searchTerm);
@@ -64,12 +61,11 @@ const userId = auth.user?.id;
     const handleRemoveFromQueue = async () => {
         try {
             await axios.delete(`/queue/${selectedMovie.id}`);
-            setQueuedMovies(prev => prev.filter(movie => movie.tmdb_id !== selectedMovie.id));
         } catch (error) {
-            console.error("Error removing from queue:", error);
+            console.error('Error removing from queue:', error);
         }
     };
-    
+
     useEffect(() => {
         fetchGenres(); // Fetch genres when the component mounts
     }, []);
@@ -127,8 +123,8 @@ const userId = auth.user?.id;
             setTotalResults(data.total);
             console.log(data);
             // Log movie IDs
-        const movieIds = data.data.map(movie => movie.id);
-        console.log("Fetched movie IDs:", movieIds);
+            const movieIds = data.data.map((movie) => movie.id);
+            console.log('Fetched movie IDs:', movieIds);
         } catch (error) {
             console.error('Error fetching movie data:', error);
         } finally {
@@ -145,11 +141,11 @@ const userId = auth.user?.id;
                 overview: selectedMovie.overview,
                 release_date: selectedMovie.release_date,
                 rating: selectedMovie.vote_average.toFixed(1),
-                    user_id: userId, // now accessible from auth
+                user_id: userId, // now accessible from auth
             });
-    
+
             // Only add to local queue if the request succeeded
-            setQueuedMovies(prev => [
+            setQueuedMovies((prev) => [
                 ...prev,
                 {
                     tmdb_id: selectedMovie.id,
@@ -160,7 +156,6 @@ const userId = auth.user?.id;
             console.error('Error queuing movie:', error);
         }
     };
-    
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
@@ -175,7 +170,6 @@ const userId = auth.user?.id;
         setSelectedMovie(movie);
         setIsModalOpen(true);
     };
-    
 
     const closeModal = () => {
         setIsModalOpen(false);
@@ -331,56 +325,73 @@ const userId = auth.user?.id;
             {/* Modals */}
 
             {isModalOpen && selectedMovie && (
-               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 px-4">
-               <div className="relative w-full max-w-2xl rounded-2xl border border-primary bg-secondary p-6 shadow-xl">
-                   <button
-                       onClick={closeModal}
-                       className="absolute right-4 top-4 text-primary hover:text-background"
-                   >
-                       <Icon name="times" />
-                   </button>
-                   <h2 className="mb-4 text-center text-2xl font-bold text-background">
-                       {selectedMovie.title}
-                   </h2>
-           
-                   {/* Responsive Flex Container */}
-                   <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
-                       <LazyLoad
-                           height={200}
-                           offset={100}
-                           className="aspect-[2/3]"
-                           once
-                       >
-                           <img
-                               src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
-                               alt={selectedMovie.title}
-                               className="w-40 sm:w-auto rounded-lg object-contain shadow"
-                               onError={(e) => {
-                                   e.target.onerror = null;
-                               }}
-                           />
-                       </LazyLoad>
-           
-                       <div className="flex flex-col w-full">
-                           <div className="h-[22rem] overflow-y-scroll rounded-lg bg-background p-2 text-accent">
-                               <h3 className="text-center text-lg font-bold underline mb-2">Overview</h3>
-                               <p>{selectedMovie.overview}</p>
-                           </div>
-                           <div className="mt-4">
-                            
-                           <PrimaryButton
-    className="w-full h-[2rem] bg-primary flex justify-center"
-    onClick={isQueued ? handleRemoveFromQueue : handleQueueMovie}
->
-    {isQueued ? "Remove from Queue" : "Add to Queue"}
-</PrimaryButton>
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 px-4">
+                    <div className="relative w-full max-w-2xl rounded-2xl border border-primary bg-secondary p-6 shadow-xl">
+                        <button
+                            onClick={closeModal}
+                            className="absolute right-4 top-4 text-primary hover:text-background"
+                        >
+                            <Icon name="times" />
+                        </button>
+                        <h2 className="mb-4 text-center text-2xl font-bold text-background">
+                            {selectedMovie.title}
+                        </h2>
 
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-           
+                        {/* Responsive Flex Container */}
+                        <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-start">
+                            <LazyLoad
+                                height={200}
+                                offset={100}
+                                className="aspect-[2/3]"
+                                once
+                            >
+                                <img
+                                    src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
+                                    alt={selectedMovie.title}
+                                    className="w-40 rounded-lg object-contain shadow sm:w-auto"
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                    }}
+                                />
+                            </LazyLoad>
+
+                            <div className="flex w-full flex-col">
+                                <div className="h-[22rem] overflow-y-auto rounded-lg bg-background p-2 text-accent">
+                                    <h3 className="mb-2 text-center text-lg font-bold underline">
+                                        Overview
+                                    </h3>
+                                    <p>{selectedMovie.overview}</p>
+                                </div>
+                                <div className="mt-4">
+                                    <PrimaryButton
+                                        className="flex h-[2rem] w-full justify-center bg-primary"
+                                        onClick={
+                                            isQueued
+                                                ? handleRemoveFromQueue
+                                                : handleQueueMovie
+                                        }
+                                    >
+                                        {isQueued ? (
+                                            <Icon
+                                                className="mr-2"
+                                                name="minus"
+                                            />
+                                        ) : (
+                                            <Icon
+                                                className="mr-2"
+                                                name="plus"
+                                            />
+                                        )}
+
+                                        {isQueued
+                                            ? 'Remove from Queue'
+                                            : 'Add to Queue'}
+                                    </PrimaryButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             )}
 
             {/* Filter Modal */}

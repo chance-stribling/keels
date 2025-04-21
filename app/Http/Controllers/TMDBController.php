@@ -162,7 +162,7 @@ public function destroy($tmdb_id)
 {
     $user = auth()->user();
 
-    $movie = $user->queuedMovies()->where('tmdb_id', $tmdb_id)->first();
+    $movie = $user->queuedMovies()->where('id', $tmdb_id)->first();
 
     if (!$movie) {
         return response()->json(['message' => 'Movie not found in queue.'], 404);
@@ -172,5 +172,12 @@ public function destroy($tmdb_id)
 
     return response()->json(['message' => 'Movie removed from queue.'], 200);
 }
+public function markAsWatched($id)
+{
+    $movie = QueuedMovie::findOrFail($id);
+    $movie->watched = true;
+    $movie->save();
 
+    return response()->json(['message' => 'Movie marked as watched']);
+}
 }
