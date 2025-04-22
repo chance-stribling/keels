@@ -58,7 +58,7 @@ export default function QueuedMovies() {
                         (movie) => movie.tmdb_id !== selectedMovie.tmdb_id,
                     ),
                 );
-            } 
+            }
 
             // Close the modal
             setIsModalOpen(false);
@@ -69,14 +69,12 @@ export default function QueuedMovies() {
     };
     const handleRemoveFromWatched = async () => {
         try {
-            
             if (selectedWatchedMovie) {
                 await axios.delete(`/queue/${selectedWatchedMovie.id}`);
                 // Update the queuedMovies state
                 setWatchedMovies((prevMovies) =>
                     prevMovies.filter(
-                        (movie) =>
-                            movie.id !== selectedWatchedMovie.id,
+                        (movie) => movie.id !== selectedWatchedMovie.id,
                     ),
                 );
             }
@@ -123,7 +121,6 @@ export default function QueuedMovies() {
             ]);
             setIsWatchedModalOpen(false);
             setIsModalOpen(false);
-
         } catch (error) {
             console.error('Error marking as watched:', error);
         }
