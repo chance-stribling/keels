@@ -3,7 +3,7 @@ import Dropdown from '@/Components/Dropdown';
 import Icon from '@/Components/Icon';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link, usePage, router } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import clsx from 'clsx';
 import { useState } from 'react';
 
@@ -34,10 +34,10 @@ export default function AuthenticatedLayout({
         ...(isHex(color) ? { backgroundColor: color } : {}),
         ...(isHex(textColor) ? { color: textColor } : {}),
     };
-    
+
     return (
         // Full layout container
-        <div className="min-h-screen bg-background font-bold">
+        <div className="flex min-h-screen flex-col bg-background font-bold">
             {/* Container for the navbar */}
             <div className="sticky top-0 z-50">
                 <nav className="border-b-2 border-primary bg-secondary">
@@ -289,7 +289,7 @@ export default function AuthenticatedLayout({
                     </header>
                 )}
             </div>
-            <main>{children}</main>
+            <main className="flex-1">{children}</main>
         </div>
     );
 }

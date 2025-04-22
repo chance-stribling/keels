@@ -36,13 +36,13 @@ export default function QueuedMovies() {
     }, []);
     useEffect(() => {
         const isAnyModalOpen = isModalOpen || isWatchedModalOpen;
-    
+
         if (isAnyModalOpen) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = '';
         }
-    
+
         return () => {
             document.body.style.overflow = '';
         };
@@ -115,7 +115,7 @@ export default function QueuedMovies() {
     };
 
     return (
-        <div className="flex min-h-screen flex-col justify-start px-4 pt-2">
+        <div className="flex flex-col justify-start px-4 pt-2">
             <h2 className="mb-2 text-2xl font-bold text-primary">
                 Queued Movies
             </h2>
