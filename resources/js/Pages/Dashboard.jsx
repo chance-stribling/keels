@@ -1,7 +1,9 @@
 import Icon from '@/Components/Icon';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
-
+import { Head, router } from '@inertiajs/react';
+const movies = () => {
+    router.visit('/movies');
+};
 export default function Dashboard() {
     return (
         <AuthenticatedLayout
@@ -18,7 +20,7 @@ export default function Dashboard() {
             <Head title="Dashboard" />
 
             <div className="mx-4 mt-2 flex flex-col items-center justify-center">
-                <div className="flex w-full justify-center rounded-2xl border-2 border-primary bg-secondary p-10 text-center text-2xl font-semibold text-background shadow-lg">
+                <div className="flex w-full justify-center rounded-2xl border-2 border-primary bg-accent p-10 text-center text-2xl font-semibold text-background shadow-lg">
                 <Icon
                         name="heart"
                         className="mr-2 text-4xl text-primary"
@@ -29,7 +31,7 @@ export default function Dashboard() {
                     className="ml-2 text-4xl text-primary"
                 />
                 </div>
-                <div className="mt-2 flex w-full justify-center rounded-2xl border-2 border-primary bg-secondary p-10 text-center text-2xl font-semibold text-background shadow-lg">
+                <div className="mt-2 hover:scale-[102%]  flex w-full justify-center rounded-2xl border-2 cursor-pointer border-primary bg-secondary p-10 text-center text-2xl font-semibold text-background shadow-lg" onClick={movies}>
                 <Icon
                         name="film"
                         className="mr-2 text-4xl text-primary"

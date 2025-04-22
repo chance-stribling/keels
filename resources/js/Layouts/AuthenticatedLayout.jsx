@@ -3,7 +3,7 @@ import Dropdown from '@/Components/Dropdown';
 import Icon from '@/Components/Icon';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link, usePage } from '@inertiajs/react';
+import { Link, usePage, router } from '@inertiajs/react';
 import clsx from 'clsx';
 import { useState } from 'react';
 
@@ -34,7 +34,7 @@ export default function AuthenticatedLayout({
         ...(isHex(color) ? { backgroundColor: color } : {}),
         ...(isHex(textColor) ? { color: textColor } : {}),
     };
-
+    
     return (
         // Full layout container
         <div className="min-h-screen bg-background font-bold">
