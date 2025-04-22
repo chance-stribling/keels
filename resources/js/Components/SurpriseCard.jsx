@@ -156,8 +156,8 @@ export default function SurpriseCard() {
             remainingCompliments[
                 Math.floor(Math.random() * remainingCompliments.length)
             ];
-            setIcon((prevIcon) =>
-            prevIcon === 'kiss' ? 'face-smile-wink' : 'kiss'
+        setIcon((prevIcon) =>
+            prevIcon === 'kiss' ? 'face-smile-wink' : 'kiss',
         );
         setCompliment(randomCompliment);
         setUsedCompliments((prev) => new Set(prev).add(randomCompliment)); // Mark this compliment as used
@@ -191,16 +191,15 @@ export default function SurpriseCard() {
             </div>
 
             {compliment ? (
-                <div className='w-full'>
+                <div className="w-full">
                     <div className="mt-4 flex w-full items-center justify-center rounded-lg bg-accent p-4 text-background">
                         <p>{compliment}</p>
-                        <Icon
-                            name={icon}
-                            className="ml-2 text-primary"
-                        />
+                        <Icon name={icon} className="ml-2 text-primary" />
                     </div>
                 </div>
-            ) : <h2>Tap Here</h2>}
+            ) : (
+                <h2>Tap Here</h2>
+            )}
 
             {/* Modal */}
             {isModalOpen && (

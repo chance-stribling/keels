@@ -14,7 +14,7 @@ const JumpingText = ({ text }) => {
     return (
         <div className="mb-5 flex" onClick={handleClick}>
             <Icon name="heart" className="mr-2 text-4xl text-primary" />
-            {text.split("").map((char, index) => (
+            {text.split('').map((char, index) => (
                 <span
                     key={index}
                     className={`inline-block ${clicked ? `animate-jump-${index + 1}` : ''}`}

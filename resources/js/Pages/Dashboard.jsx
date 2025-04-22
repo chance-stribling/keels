@@ -1,14 +1,14 @@
 import Icon from '@/Components/Icon';
 import SurpriseCard from '@/Components/SurpriseCard';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { useState } from 'react';
 import { Head, router } from '@inertiajs/react';
+import { useState } from 'react';
 const movies = () => {
     router.visit('/movies');
 };
 const JumpingText = () => {
     const [clicked, setClicked] = useState(false);
-    const text = "Welcome to Keelyscope!";
+    const text = 'Welcome to Keelyscope!';
 
     const handleClick = () => {
         setClicked(true);
@@ -20,7 +20,7 @@ const JumpingText = () => {
     return (
         <div className="mb-5 flex" onClick={handleClick}>
             <Icon name="heart" className="mr-2 text-4xl text-primary" />
-            {text.split("").map((char, index) => (
+            {text.split('').map((char, index) => (
                 <span
                     key={index}
                     className={`inline-block ${clicked ? `animate-jump-${index + 1}` : ''}`}
@@ -67,16 +67,18 @@ export default function Dashboard() {
                         />
                     </div>
                     <p>
-                        Welcome to Keelyscope, where we explore the world of
-                        movies, shows, and food together. A space to track,
-                        share, and discover the things we enjoy, with plenty
-                        more to come. Let’s dive into the stories and
-                        experiences that make us who we are.
+                        A space where we can explore all the movies we’ve
+                        watched, plan what’s next on our list, and share our
+                        thoughts on everything in between. Later on, you'll also
+                        be able to track shows and restaurants, making it easy
+                        to keep up with our favorite things. It’s all about
+                        discovering new experiences together and having fun
+                        along the way. Enjoy the journey!
                     </p>
                 </div>
                 <SurpriseCard />
                 <div
-                    className="mt-2 mb-4 flex w-full cursor-pointer justify-center rounded-2xl border-2 border-primary bg-secondary p-10 text-center text-2xl font-semibold text-background shadow-lg hover:scale-[102%]"
+                    className="mb-4 mt-2 flex w-full cursor-pointer justify-center rounded-2xl border-2 border-primary bg-secondary p-10 text-center text-2xl font-semibold text-background shadow-lg hover:scale-[102%]"
                     onClick={movies}
                 >
                     <Icon name="film" className="mr-2 text-4xl text-primary" />
