@@ -48,6 +48,7 @@ export default function QueuedMovies() {
         };
     }, [isModalOpen, isWatchedModalOpen]);
     const handleRemoveFromQueue = async () => {
+        console.log(selectedWatchedMovie.id);
         try {
             if (selectedMovie) {
                 await axios.delete(`/queue/${selectedMovie.id}`);
@@ -57,13 +58,25 @@ export default function QueuedMovies() {
                         (movie) => movie.tmdb_id !== selectedMovie.tmdb_id,
                     ),
                 );
-            } else if (selectedWatchedMovie) {
+            } 
+
+            // Close the modal
+            setIsModalOpen(false);
+            setIsWatchedModalOpen(false);
+        } catch (error) {
+            console.error('Error removing from queue:', error);
+        }
+    };
+    const handleRemoveFromWatched = async () => {
+        try {
+            
+            if (selectedWatchedMovie) {
                 await axios.delete(`/queue/${selectedWatchedMovie.id}`);
                 // Update the queuedMovies state
                 setWatchedMovies((prevMovies) =>
                     prevMovies.filter(
                         (movie) =>
-                            movie.tmdb_id !== selectedWatchedMovie.tmdb_id,
+                            movie.id !== selectedWatchedMovie.id,
                     ),
                 );
             }
@@ -109,6 +122,8 @@ export default function QueuedMovies() {
                 { ...selectedMovie, watched: true },
             ]);
             setIsWatchedModalOpen(false);
+            setIsModalOpen(false);
+
         } catch (error) {
             console.error('Error marking as watched:', error);
         }
@@ -325,7 +340,7 @@ export default function QueuedMovies() {
                             <div className="flex w-full flex-col">
                                 <div className="h-[18rem] overflow-y-auto rounded-lg bg-background p-2 text-accent">
                                     <h3 className="mb-2 text-center text-lg font-bold underline">
-                                        Overview
+                                        Overview {selectedWatchedMovie.id}
                                     </h3>
                                     <p className="text-accent">
                                         {selectedWatchedMovie.overview}
@@ -334,7 +349,7 @@ export default function QueuedMovies() {
                                 <div className="mt-4">
                                     <PrimaryButton
                                         className="flex h-[2rem] w-full justify-center bg-primary"
-                                        onClick={handleRemoveFromQueue}
+                                        onClick={handleRemoveFromWatched}
                                     >
                                         <Icon className="mr-2" name="eye" />
 
