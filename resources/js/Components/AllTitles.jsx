@@ -356,7 +356,7 @@ export default function AllTitles() {
                             </LazyLoad>
 
                             <div className="flex w-full flex-col">
-                                <div className="h-[22rem] overflow-y-auto rounded-lg bg-background p-2 text-accent">
+                                <div className="h-[18rem] overflow-y-auto rounded-lg bg-background p-2 text-accent">
                                     <h3 className="mb-2 text-center text-lg font-bold underline">
                                         Overview
                                     </h3>
