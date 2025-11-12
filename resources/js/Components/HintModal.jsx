@@ -29,7 +29,7 @@ export default function HintModal({ onClose }) {
 
                 {/* Body */}
                 <div className="mt-2 text-lg font-semibold text-primary">
-                    Where do dragons get tacos?
+                    Test?
                 </div>
 
                 {/* Footer with close button */}
