@@ -12,16 +12,20 @@ export default function ForgotPassword() {
         email: '',
         password: '',
         password_confirmation: '',
-        passphrase: '', // Add passphrase field
+        passphrase: '',
     });
 
     const submit = (e) => {
         e.preventDefault();
 
         post(route('password.reset'), {
-            // Adjust the route to your new logic
-            onFinish: () =>
-                reset('password', 'password_confirmation', 'passphrase'),
+            data: {
+                email: data.email,
+                password: data.password,
+                password_confirmation: data.password_confirmation,
+                passphrase: data.passphrase,
+            },
+            onSuccess: () => reset('password', 'password_confirmation', 'passphrase'),
         });
     };
     const [showHintModal, setShowHintModal] = useState(false);

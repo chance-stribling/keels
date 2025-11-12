@@ -29,7 +29,7 @@ export default function HintModal({ onClose }) {
 
                 {/* Body */}
                 <div className="mt-2 text-lg font-semibold text-primary">
-                    Test?
+                    Where was our first date?
                 </div>
 
                 {/* Footer with close button */}

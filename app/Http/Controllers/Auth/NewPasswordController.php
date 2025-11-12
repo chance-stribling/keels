@@ -25,7 +25,7 @@ class NewPasswordController extends Controller
         "Warrior Path State Park",
         "Warriors' Path",
         "Warriors Path",
-        "Warrior Path ",
+        "Warrior Path",
     ];
 
     /**
