@@ -13,7 +13,7 @@ use Inertia\Response;
 
 class PasswordResetLinkController extends Controller
 {
-    protected $validPassphrase = 'buttchecks'; // Change this to your passphrase
+    protected $validPassphrase = 'test'; // Change this to your passphrase
 
     /**
      * Display the password reset link request view.
@@ -45,7 +45,7 @@ class PasswordResetLinkController extends Controller
 
         // Check if the entered passphrase is correct
         if ($request->passphrase !== $this->validPassphrase) {
-            return back()->withErrors(['passphrase' => 'The passphrase you entered is incorrect.']);
+            return back()->withErrors(['passphrase' => 'The passphrase you entered is incorrect. (test)']);
         }
 
         // Find the user and update the password
